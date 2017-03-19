@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Keyboard</title>
+  <script src="jquery-3.1.1.min.js"></script>
+  <script src="dom-to-image.js"></script>
+  <script src="FileSaver.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <style>
+   html, body{
+    height: 100%;
+   }
+   body{
+    padding: 0;margin:0;
+    position: relative;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+   }
+   #container{
+    position: relative;
+    width: calc(48px * 15 + 256px);
+    padding: 16px;
+    border: 2px solid #000;
+    background: #fff;
+   }
+   kbd{
+    padding: 4px;
+    margin: 2px;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    font-family: Roboto, sans-serif;
+    font-size: 14pt
+     cursor: default;
+   }
+   kbd > span{
+    pointer-events: none;
+   }
+
+   .row{
+    display: flex;
+   }
+   #config{
+    overflow-y: auto;
+   }
+
+   #container[data-keyRoundness="round"] kbd{;
+    border-radius: 8px;
+   }
+   #container[data-keyRoundness="square"] kbd{;
+    border-radius: initial;
+   }
+
+   #container[data-keyStyle="black"] kbd{
+    color: #fff;
+    background: #000;
+    border: 2px transparent solid;
+    text-shadow:
+     -1px -1px 0 #000,
+     1px -1px 0 #000,
+     -1px 1px 0 #000,
+     1px 1px 0 #000;
+   }
+   #container[data-keyStyle="black"] kbd > span{
+    border-bottom: 2px #fff solid;
+   }
+
+   #container[data-keyStyle="grey"] kbd{
+    color: #fff;
+    background: #555;
+    border: 2px transparent solid;
+    text-shadow:
+     -1px -1px 0 #555,
+     1px -1px 0 #555,
+     -1px 1px 0 #555,
+     1px 1px 0 #555;
+   }
+   #container[data-keyStyle="grey"] kbd > span{
+    border-bottom: 2px #fff solid;
+   }
+
+   #container[data-keyStyle="white"] kbd{
+    color: #000;
+    background: #fff;
+    border: 2px #000 solid;
+    text-shadow:
+     -1px -1px 0 #fff,
+     1px -1px 0 #fff,
+     -1px 1px 0 #fff,
+     1px 1px 0 #fff;
+   }
+   #container[data-keyStyle="white"] kbd > span{
+    border-bottom: 2px #000 solid;
+   }
+
+   #container[data-textAlign="center"] kbd{
+    text-align: center;
+    line-height: 48px;
+   }
+   #container[data-textAlign="topLeft"] kbd{
+    text-align: left;
+    line-height: initial;
+   }
+   #container kbd[data-isPressed="true"]{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 6px;
+   }
+
+   #colourInput{
+    width: 50px;
+    font-family: monospace;
+   }
+  </style>
+ </head>
+ <body>
+  <div id="container" data-keyStyle="black" data-keyRoundness="round" data-textAlign="center">
+   <div class="row" style="justify-content: space-between;">
+    <kbd data-keyCode="27">Esc</kbd>
+    <div>
+     <kbd data-keyCode="112">F1</kbd>
+     <kbd data-keyCode="113">F2</kbd>
+     <kbd data-keyCode="114">F3</kbd>
+     <kbd data-keyCode="115">F4</kbd>
+    </div>
+    <div>
+     <kbd data-keyCode="116">F5</kbd>
+     <kbd data-keyCode="117">F6</kbd>
+     <kbd data-keyCode="118">F7</kbd>
+     <kbd data-keyCode="119">F8</kbd>
+    </div>
+    <div>
+     <kbd data-keyCode="120">F9</kbd>
+     <kbd data-keyCode="121">F10</kbd>
+     <kbd data-keyCode="122">F11</kbd>
+     <kbd data-keyCode="123">F12</kbd>
+    </div>
+   </div>
+   <div class="row">
+    <kbd data-keyCode="192">`</kbd>
+    <kbd data-keyCode="49">1</kbd>
+    <kbd data-keyCode="50">2</kbd>
+    <kbd data-keyCode="51">3</kbd>
+    <kbd data-keyCode="52">4</kbd>
+    <kbd data-keyCode="53">5</kbd>
+    <kbd data-keyCode="54">6</kbd>
+    <kbd data-keyCode="55">7</kbd>
+    <kbd data-keyCode="56">8</kbd>
+    <kbd data-keyCode="57">9</kbd>
+    <kbd data-keyCode="48">0</kbd>
+    <kbd data-keyCode="189">-</kbd>
+    <kbd data-keyCode="187">+</kbd>
+    <kbd data-keyCode="8" style="flex-grow: 1;">Backspace</kbd>
+   </div>
+   <div class="row">
+    <kbd data-keyCode="9" style="flex-grow: 1;">Tab</kbd>
+    <kbd data-keyCode="81">Q</kbd>
+    <kbd data-keyCode="87">W</kbd>
+    <kbd data-keyCode="69">E</kbd>
+    <kbd data-keyCode="82">R</kbd>
+    <kbd data-keyCode="84">T</kbd>
+    <kbd data-keyCode="89">Y</kbd>
+    <kbd data-keyCode="85">U</kbd>
+    <kbd data-keyCode="73">I</kbd>
+    <kbd data-keyCode="79">O</kbd>
+    <kbd data-keyCode="80">P</kbd>
+    <kbd data-keyCode="219">[</kbd>
+    <kbd data-keyCode="221">]</kbd>
+    <kbd data-keyCode="220" style="flex-grow: 1;">\</kbd>
+   </div>
+   <div class="row">
+    <kbd data-keyCode="20" style="flex-grow: 1;">Caps Lock</kbd>
+    <kbd data-keyCode="65">A</kbd>
+    <kbd data-keyCode="83">S</kbd>
+    <kbd data-keyCode="68">D</kbd>
+    <kbd data-keyCode="70"><span style="padding-bottom: 1px;">F</span></kbd>
+    <kbd data-keyCode="71">G</kbd>
+    <kbd data-keyCode="72">H</kbd>
+    <kbd data-keyCode="74"><span style="padding-bottom: 1px;">J</span></kbd>
+    <kbd data-keyCode="75">K</kbd>
+    <kbd data-keyCode="76">L</kbd>
+    <kbd data-keyCode="186">;</kbd>
+    <kbd data-keyCode="222">'</kbd>
+    <kbd data-keyCode="13" style="flex-grow: 1;">Enter</kbd>
+   </div>
+   <div class="row">
+    <kbd data-keyCode="16" data-keySide="left" style="flex-grow: 1;">Shift</kbd>
+    <kbd data-keyCode="90">Z</kbd>
+    <kbd data-keyCode="88">X</kbd>
+    <kbd data-keyCode="67">C</kbd>
+    <kbd data-keyCode="86">V</kbd>
+    <kbd data-keyCode="66">B</kbd>
+    <kbd data-keyCode="78">N</kbd>
+    <kbd data-keyCode="77">M</kbd>
+    <kbd data-keyCode="188">,</kbd>
+    <kbd data-keyCode="190">.</kbd>
+    <kbd data-keyCode="191">/</kbd>
+    <kbd data-keyCode="16" data-keySide="right" style="flex-grow: 1;">Shift</kbd>
+   </div>
+   <div class="row">
+    <kbd data-keyCode="17" data-keySide="left" style="flex-grow: 3;">Ctrl</kbd>
+    <kbd data-keyCode="91" data-keySide="left" style="flex-grow: 1;">Win</kbd>
+    <kbd data-keyCode="18" data-keySide="left" style="flex-grow: 2;">Alt</kbd>
+    <kbd data-keyCode="32" style="flex-grow: 20;">Space</kbd>
+    <kbd data-keyCode="18" data-keySide="right" style="flex-grow: 2;">Alt</kbd>
+    <kbd data-keyCode="91" data-keySide="right" style="flex-grow: 1;">Win</kbd>
+    <kbd data-keyCode="93" style="flex-grow: 1;">Menu</kbd>
+    <kbd data-keyCode="17" data-keySide="right" style="flex-grow: 3;">Ctrl</kbd>
+   </div>
+  </div>
+  <div id="config">
+   <fieldset id="keyStyle">
+    <legend>Key Style</legend>
+    <label><input type="radio" name="keyStyle" value="black" checked/>Black</label>
+    <br/>
+    <label><input type="radio" name="keyStyle" value="grey"/>Grey</label>
+    <br/>
+    <label><input type="radio" name="keyStyle" value="white"/>White (Outline)</label>
+   </fieldset>
+   <fieldset id="keyRoundness">
+    <legend>Key Roundness</legend>
+    <label><input type="radio" name="keyRoundness" value="round" checked/>Round</label>
+    <br/>
+    <label><input type="radio" name="keyRoundness" value="Square"/>Square</label>
+   </fieldset>
+   <fieldset id="textAlign">
+    <legend>Text Align</legend>
+    <label><input type="radio" name="textAlign" value="center" checked/>Center</label>
+    <br/>
+    <label><input type="radio" name="textAlign" value="topLeft"/>TopLeft</label>
+   </fieldset>
+   <fieldset id="colourSelect">
+    <legend>Colour Select</legend>
+    <label><input id="colourPicker" type="color"/></label>
+    <label><input id="colourInput" type="input" value="#000000" maxlength="7"/></label><br/>
+    <label><input id="colourToggle" type="button" data-enabled="false" value="Colour OFF"/></label><br/>
+    <label><input id="colourReset" type="button" value="Reset Colours"/></label>
+   </fieldset>
+   <fieldset id="options">
+    <legend>Save</legend>
+    <label><input type="button" id="save" value="Save as PNG" checked/></label>
+   </fieldset>
+  </div>
+  <script>
+   $(document).ready(function(){
+    "use strict";
+
+    $('#keyStyle input').on("click", function(){
+     $('#container').attr("data-keyStyle", $(this).val());
+    });
+    $('#keyRoundness input').on("click", function(){
+     $('#container').attr("data-keyRoundness", $(this).val());
+    });
+    $('#textAlign input').on("click", function(){
+     $('#container').attr("data-textAlign", $(this).val());
+    });
+    $('#colourPicker').on("change", function(){
+     $('#colourInput').val($(this).val());
+    });
+    $('#colourInput').on("keydown", function(e){
+     if( e.keyCode === 13 ){
+      $('#colourPicker').val($(this).val());
+     }
+    });
+    $('#colourToggle').on("click", function(e){
+     if( $('#colourToggle').attr("data-enabled") === "true" ){
+      $('#colourToggle')
+       .attr("data-enabled", false)
+       .val("Colour OFF")
+      ;
+     }else{
+      $('#colourToggle')
+       .attr("data-enabled", true)
+       .val("Colour ON")
+      ;
+     }
+    });
+    $('#colourReset').on("click", function(e){
+     $('kbd').css("background", "");
+    });
+
+    $('#save').on("click", function(){
+     domtoimage.toBlob(document.getElementById("container"))
+      .then(function(blob){
+      window.saveAs(blob, "keyboard.png");
+     });
+    });
+
+    $('kbd').on("click", function(e){
+     if( $('#colourToggle').attr("data-enabled") === "true" ){
+      $(e.target).css("background", $('#colourInput').val());
+     }
+    });
+
+    var keyMap ={};
+    $(document)
+     .on("keydown", function(e){
+     if( !keyMap[e.keyCode] || keyMap[e.keyCode] === undefined ){
+
+      /*if(event.ctrlKey){
+       if(event.ctrlLeft){
+        
+        console.log('ctrl-left'); 
+       }else{
+        console.log('ctrl-right');
+       }
+      }else if(event.altKey){
+       if(event.altLeft){
+        console.log('alt-left'); 
+       }else{
+        console.log('alt-right');
+       }
+      }else if(event.shiftKey){
+       if(event.shiftLeft){
+        console.log('shift-left'); 
+       }else{
+        console.log('shift-right');
+       }
+      }else{*/
+       keyMap[e.keyCode] = true;
+       if( $("kbd[data-keycode=\"" + e.keyCode + "\"]").attr("data-isPressed") === "true" ){
+        $("kbd[data-keycode=\"" + e.keyCode + "\"]").attr("data-isPressed", "false");
+       }else{
+        $("kbd[data-keycode=\"" + e.keyCode + "\"]").attr("data-isPressed", true);
+       }
+      //}
+     }
+     event.preventDefault();
+     event.stopPropagation();
+     return false;
+    })
+     .on("keyup", function(e){
+     if( keyMap[e.keyCode] ){
+      keyMap[e.keyCode] = false;
+     }
+    });
+
+    $(window).on("contextmenu", function(e){
+     return false;
+    });
+   });
+  </script>
+ </body>
+</html>
