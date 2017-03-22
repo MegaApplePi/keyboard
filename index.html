@@ -6,114 +6,10 @@
   <script src="dom-to-image.js"></script>
   <script src="FileSaver.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <style>
-   html, body{
-    height: 100%;
-   }
-   body{
-    padding: 0;margin:0;
-    position: relative;
-    overflow: hidden;
-    -webkit-user-select: none;
-    user-select: none;
-   }
-   #container{
-    position: relative;
-    width: calc(48px * 15 + 256px);
-    padding: 16px;
-    border: 2px solid #000;
-    background: #fff;
-   }
-   kbd{
-    padding: 4px;
-    margin: 2px;
-    display: inline-block;
-    width: 48px;
-    height: 48px;
-    font-family: Roboto, sans-serif;
-    font-size: 14pt
-     cursor: default;
-   }
-   kbd > span{
-    pointer-events: none;
-   }
-
-   .row{
-    display: flex;
-   }
-   #config{
-    overflow-y: auto;
-   }
-
-   #container[data-keyRoundness="round"] kbd{;
-    border-radius: 8px;
-   }
-   #container[data-keyRoundness="square"] kbd{;
-    border-radius: initial;
-   }
-
-   #container[data-keyStyle="black"] kbd{
-    color: #fff;
-    background: #000;
-    border: 2px transparent solid;
-    text-shadow:
-     -1px -1px 0 #000,
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-     1px 1px 0 #000;
-   }
-   #container[data-keyStyle="black"] kbd > span{
-    border-bottom: 2px #fff solid;
-   }
-
-   #container[data-keyStyle="grey"] kbd{
-    color: #fff;
-    background: #555;
-    border: 2px transparent solid;
-    text-shadow:
-     -1px -1px 0 #555,
-     1px -1px 0 #555,
-     -1px 1px 0 #555,
-     1px 1px 0 #555;
-   }
-   #container[data-keyStyle="grey"] kbd > span{
-    border-bottom: 2px #fff solid;
-   }
-
-   #container[data-keyStyle="white"] kbd{
-    color: #000;
-    background: #fff;
-    border: 2px #000 solid;
-    text-shadow:
-     -1px -1px 0 #fff,
-     1px -1px 0 #fff,
-     -1px 1px 0 #fff,
-     1px 1px 0 #fff;
-   }
-   #container[data-keyStyle="white"] kbd > span{
-    border-bottom: 2px #000 solid;
-   }
-
-   #container[data-textAlign="center"] kbd{
-    text-align: center;
-    line-height: 48px;
-   }
-   #container[data-textAlign="topLeft"] kbd{
-    text-align: left;
-    line-height: initial;
-   }
-   #container kbd[data-isPressed="true"]{
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    margin: 6px;
-   }
-
-   #colourInput{
-    width: 50px;
-    font-family: monospace;
-   }
-  </style>
+  <link href="material.min.css" rel="stylesheet">
+  <script src="material.min.js"></script>
+  <link href="index.css" rel="stylesheet">
+  <script src="index.js"></script>
  </head>
  <body>
   <div id="container" data-keyStyle="black" data-keyRoundness="round" data-textAlign="center">
@@ -152,10 +48,10 @@
     <kbd data-keyCode="48">0</kbd>
     <kbd data-keyCode="189">-</kbd>
     <kbd data-keyCode="187">+</kbd>
-    <kbd data-keyCode="8" style="flex-grow: 1;">Backspace</kbd>
+    <kbd data-keyCode="8" style="flex-grow: 1;"><i class="material-icons">keyboard_backspace</i> Backspace</kbd>
    </div>
    <div class="row">
-    <kbd data-keyCode="9" style="flex-grow: 1;">Tab</kbd>
+    <kbd data-keyCode="9" style="flex-grow: 1;">Tab <i class="material-icons">keyboard_tab</i></kbd>
     <kbd data-keyCode="81">Q</kbd>
     <kbd data-keyCode="87">W</kbd>
     <kbd data-keyCode="69">E</kbd>
@@ -171,7 +67,7 @@
     <kbd data-keyCode="220" style="flex-grow: 1;">\</kbd>
    </div>
    <div class="row">
-    <kbd data-keyCode="20" style="flex-grow: 1;">Caps Lock</kbd>
+    <kbd data-keyCode="20" style="flex-grow: 1;">Caps Lock <i class="material-icons">keyboard_capslock</i></kbd>
     <kbd data-keyCode="65">A</kbd>
     <kbd data-keyCode="83">S</kbd>
     <kbd data-keyCode="68">D</kbd>
@@ -183,10 +79,10 @@
     <kbd data-keyCode="76">L</kbd>
     <kbd data-keyCode="186">;</kbd>
     <kbd data-keyCode="222">'</kbd>
-    <kbd data-keyCode="13" style="flex-grow: 1;">Enter</kbd>
+    <kbd data-keyCode="13" style="flex-grow: 1;"><i class="material-icons">keyboard_return</i> Enter</kbd>
    </div>
    <div class="row">
-    <kbd data-keyCode="16" data-keySide="left" style="flex-grow: 1;">Shift</kbd>
+    <kbd data-keyCode="16" data-keySide="left" style="flex-grow: 1;"><i class="material-icons">arrow_upward</i> Shift</kbd>
     <kbd data-keyCode="90">Z</kbd>
     <kbd data-keyCode="88">X</kbd>
     <kbd data-keyCode="67">C</kbd>
@@ -197,7 +93,7 @@
     <kbd data-keyCode="188">,</kbd>
     <kbd data-keyCode="190">.</kbd>
     <kbd data-keyCode="191">/</kbd>
-    <kbd data-keyCode="16" data-keySide="right" style="flex-grow: 1;">Shift</kbd>
+    <kbd data-keyCode="16" data-keySide="right" style="flex-grow: 1;">Shift <i class="material-icons">arrow_upward</i></kbd>
    </div>
    <div class="row">
     <kbd data-keyCode="17" data-keySide="left" style="flex-grow: 3;">Ctrl</kbd>
@@ -210,137 +106,105 @@
     <kbd data-keyCode="17" data-keySide="right" style="flex-grow: 3;">Ctrl</kbd>
    </div>
   </div>
-  <div id="config">
-   <fieldset id="keyStyle">
-    <legend>Key Style</legend>
-    <label><input type="radio" name="keyStyle" value="black" checked/>Black</label>
-    <br/>
-    <label><input type="radio" name="keyStyle" value="grey"/>Grey</label>
-    <br/>
-    <label><input type="radio" name="keyStyle" value="white"/>White (Outline)</label>
-   </fieldset>
-   <fieldset id="keyRoundness">
-    <legend>Key Roundness</legend>
-    <label><input type="radio" name="keyRoundness" value="round" checked/>Round</label>
-    <br/>
-    <label><input type="radio" name="keyRoundness" value="Square"/>Square</label>
-   </fieldset>
-   <fieldset id="textAlign">
-    <legend>Text Align</legend>
-    <label><input type="radio" name="textAlign" value="center" checked/>Center</label>
-    <br/>
-    <label><input type="radio" name="textAlign" value="topLeft"/>TopLeft</label>
-   </fieldset>
-   <fieldset id="colourSelect">
-    <legend>Colour Select</legend>
-    <label><input id="colourPicker" type="color"/></label>
-    <label><input id="colourInput" type="input" value="#000000" maxlength="7"/></label><br/>
-    <label><input id="colourToggle" type="button" data-enabled="false" value="Colour OFF"/></label><br/>
-    <label><input id="colourReset" type="button" value="Reset Colours"/></label>
-   </fieldset>
-   <fieldset id="options">
-    <legend>Save</legend>
-    <label><input type="button" id="save" value="Save as PNG" checked/></label>
-   </fieldset>
+  <div id="config" data-state="closed">
+   <button id="config_toggle" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+    <i class="material-icons">arrow_back</i>
+   </button>
+   <div>
+    <fieldset id="keyIcons">
+     <legend>Key Icons</legend>
+     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="keyIconsToggle">
+      <input type="checkbox" id="keyIconsToggle" class="mdl-switch__input">
+      <span class="mdl-switch__label">Hide Icons</span>
+     </label>
+    </fieldset>
+    <fieldset id="keyStyle">
+     <legend>Key Style</legend>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-1">
+      <input type="radio" id="keyStyle-1" class="mdl-radio__button" name="keyStyle" value="black" checked/>
+      <span class="mdl-radio__label">Black</span>
+     </label>
+     <br/>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-2">
+      <input type="radio" id="keyStyle-2" class="mdl-radio__button" name="keyStyle" value="grey">
+      <span class="mdl-radio__label">Grey</span>
+     </label>
+     <br/>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-3">
+      <input type="radio" id="keyStyle-3" class="mdl-radio__button" name="keyStyle" value="white">
+      <span class="mdl-radio__label">White (Outline)</span>
+     </label>
+    </fieldset>
+   </div>
+   <div>
+    <fieldset id="keyRoundness">
+     <legend>Key Roundness</legend>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyRoundness-1">
+      <input type="radio" id="keyRoundness-1" class="mdl-radio__button" name="keyRoundness" value="round" checked/>
+      <span class="mdl-radio__label">Round</span>
+     </label>
+     <br/>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyRoundness-2">
+      <input type="radio" id="keyRoundness-2" class="mdl-radio__button" name="keyRoundness" value="square"/>
+      <span class="mdl-radio__label">Square</span>
+     </label>
+    </fieldset>
+    <fieldset id="textAlign">
+     <legend>Text Align</legend>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="textAlign-1">
+      <input type="radio" id="textAlign-1" class="mdl-radio__button" name="textAlign" value="center" checked/>
+      <span class="mdl-radio__label">Center</span>
+     </label>
+     <br/>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="textAlign-2">
+      <input type="radio" id="textAlign-2" class="mdl-radio__button" name="textAlign" value="topLeft"/>
+      <span class="mdl-radio__label">TopLeft</span>
+     </label>
+    </fieldset>
+   </div>
+   <div>
+    <fieldset id="colours">
+     <legend>Colours</legend>
+     <label><input id="colourPicker" type="color"/></label>
+     <label>#
+      <div style="width: 100px;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+       <!--<input class="mdl-textfield__input" type="text" pattern="([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" value="000000" maxlength="6" id="colourInput"/>-->
+       <input class="mdl-textfield__input" type="text" pattern="([A-Fa-f0-9]{6})$" value="000000" maxlength="6" id="colourInput"/>
+       <label class="mdl-textfield__label" for="colourInput">Hexcode</label>
+       <span class="mdl-textfield__error">Invalid Hexcode!</span>
+      </div>
+     </label>
+     <br/>
+     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="colourToggle_Mouse">
+      <input type="checkbox" id="colourToggle_Mouse" class="mdl-switch__input">
+      <span class="mdl-switch__label">Paint with Mouse</span>
+     </label>
+     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="colourToggle_Keyboard">
+      <input type="checkbox" id="colourToggle_Keyboard" class="mdl-switch__input">
+      <span class="mdl-switch__label">Paint with Keyboard<br/><small>(Disables keyboard shortcuts)</small></span>
+     </label>
+     <button id="colourReset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Reset Colours
+     </button>
+    </fieldset>
+    <fieldset id="save">
+     <legend>Save</legend>
+     <button id="savePNG" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Save as PNG
+     </button>
+     <br/>
+     <button id="saveJPG" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Save as JPG
+     </button>
+     <br/>
+     <label>
+      JPG Quality - <span id="JPG_qual_num">80</span>%
+      <p style="width:200px">
+       <input class="mdl-slider mdl-js-slider" type="range" id="JPG_qual" min="1" max="100" value="80" step="1"/>
+      </p>
+     </label>
+    </fieldset>
+   </div>
   </div>
-  <script>
-   $(document).ready(function(){
-    "use strict";
-
-    $('#keyStyle input').on("click", function(){
-     $('#container').attr("data-keyStyle", $(this).val());
-    });
-    $('#keyRoundness input').on("click", function(){
-     $('#container').attr("data-keyRoundness", $(this).val());
-    });
-    $('#textAlign input').on("click", function(){
-     $('#container').attr("data-textAlign", $(this).val());
-    });
-    $('#colourPicker').on("change", function(){
-     $('#colourInput').val($(this).val());
-    });
-    $('#colourInput').on("keydown", function(e){
-     if( e.keyCode === 13 ){
-      $('#colourPicker').val($(this).val());
-     }
-    });
-    $('#colourToggle').on("click", function(e){
-     if( $('#colourToggle').attr("data-enabled") === "true" ){
-      $('#colourToggle')
-       .attr("data-enabled", false)
-       .val("Colour OFF")
-      ;
-     }else{
-      $('#colourToggle')
-       .attr("data-enabled", true)
-       .val("Colour ON")
-      ;
-     }
-    });
-    $('#colourReset').on("click", function(e){
-     $('kbd').css("background", "");
-    });
-
-    $('#save').on("click", function(){
-     domtoimage.toBlob(document.getElementById("container"))
-      .then(function(blob){
-      window.saveAs(blob, "keyboard.png");
-     });
-    });
-
-    $('kbd').on("click", function(e){
-     if( $('#colourToggle').attr("data-enabled") === "true" ){
-      $(e.target).css("background", $('#colourInput').val());
-     }
-    });
-
-    var keyMap ={};
-    $(document)
-     .on("keydown", function(e){
-     if( !keyMap[e.keyCode] || keyMap[e.keyCode] === undefined ){
-
-      /*if(event.ctrlKey){
-       if(event.ctrlLeft){
-        
-        console.log('ctrl-left'); 
-       }else{
-        console.log('ctrl-right');
-       }
-      }else if(event.altKey){
-       if(event.altLeft){
-        console.log('alt-left'); 
-       }else{
-        console.log('alt-right');
-       }
-      }else if(event.shiftKey){
-       if(event.shiftLeft){
-        console.log('shift-left'); 
-       }else{
-        console.log('shift-right');
-       }
-      }else{*/
-       keyMap[e.keyCode] = true;
-       if( $("kbd[data-keycode=\"" + e.keyCode + "\"]").attr("data-isPressed") === "true" ){
-        $("kbd[data-keycode=\"" + e.keyCode + "\"]").attr("data-isPressed", "false");
-       }else{
-        $("kbd[data-keycode=\"" + e.keyCode + "\"]").attr("data-isPressed", true);
-       }
-      //}
-     }
-     event.preventDefault();
-     event.stopPropagation();
-     return false;
-    })
-     .on("keyup", function(e){
-     if( keyMap[e.keyCode] ){
-      keyMap[e.keyCode] = false;
-     }
-    });
-
-    $(window).on("contextmenu", function(e){
-     return false;
-    });
-   });
-  </script>
  </body>
 </html>

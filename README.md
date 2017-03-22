@@ -18,3 +18,4 @@ These libraries were used:
 
 - [dom-to-image](https://github.com/tsayen/dom-to-image) - for converting the DOM to an image
 - [FileSaver](https://github.com/eligrey/FileSaver.js/) - to save that image as an actual file
+- [Material Design Lite](https://getmdl.io/index.html) - design and styles
