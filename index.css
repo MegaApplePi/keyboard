@@ -1,3 +1,40 @@
+@font-face {
+ font-family: 'Material Icons';
+ font-style: normal;
+ font-weight: 400;
+ src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+ src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url(font/MaterialIcons-Regular.woff2) format('woff2'),
+  url(font/MaterialIcons-Regular.woff) format('woff'),
+  url(font/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+ font-family: 'Material Icons';
+ font-weight: normal;
+ font-style: normal;
+ font-size: 24px;  /* Preferred icon size */
+ display: inline-block;
+ line-height: 1;
+ text-transform: none;
+ letter-spacing: normal;
+ word-wrap: normal;
+ white-space: nowrap;
+ direction: ltr;
+
+ /* Support for all WebKit browsers. */
+ -webkit-font-smoothing: antialiased;
+ /* Support for Safari and Chrome. */
+ text-rendering: optimizeLegibility;
+
+ /* Support for Firefox. */
+ -moz-osx-font-smoothing: grayscale;
+
+ /* Support for IE. */
+ font-feature-settings: 'liga';
+}
+
 html, body{
  height: 100%;
 }
@@ -29,34 +66,88 @@ kbd{
 kbd > span{
  pointer-events: none;
 }
-
+kbd > i{
+ pointer-events: none;
+ display: inline-flex;
+ vertical-align: middle;
+ padding-bottom: 2px;
+}
+kbd > i.hidden{
+ display: none;
+}
 .row{
  display: flex;
 }
+
 #config{
+ display: flex;
+ flex-direction: column;
  position: fixed;
- padding: 4px 32px 4px 64px;
- height: 100%;
- top: 0;
- right: 0;
  background: #fff;
- transform: translateX(calc(100% - 64px));
  transition: transform 1s;
- border-left: 2px dashed #000;
  overflow-y: auto;
  z-index: 1;
+
+ padding: 96px 32px 4px 32px;
+ flex-direction: row;
+ width: 100%;
+ height: auto;
+ top: initial;
+ right: initial;
+ left: 0;
+ bottom: 0;
+ transform: translateY(calc(100% - 64px));
+ border-top: 2px dashed #000;
+ border-left: none;
 }
-#config:hover{
- transform: translateX(0%);
+#config[data-state="opened"]{
+ transform: translateY(0%);
+}
+#config_toggle{
+ position: absolute;
+ top: 16px;
+ left: 16px;
+ transform: rotate(90deg);
+}
+@media only screen and (min-width:1078px){
+ #config{
+  padding: 4px 32px 4px 96px;
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: initial;
+  bottom: initial;
+  transform: translateX(calc(100% - 64px));
+  border-top: none;
+  border-left: 2px dashed #000;
+ }
+ #config[data-state="opened"]{
+  transform: translateX(0%);
+ }
+ #config_toggle{
+  transform: initial;
+ }
 }
 fieldset{
  margin-top: 12px;
  margin-bottom: 8px;
+ width: 300px;
 }
 legend{
  font-size: 16pt;
  text-decoration: underline;
  margin-bottom: 12px;
+}
+label{
+ margin: 2px 0!important;
+}
+button{
+ margin: 4px 0!important;
+}
+#colourReset{
+ margin-top: 24px!important;
 }
 #colourInput{
  font-family: monospace;

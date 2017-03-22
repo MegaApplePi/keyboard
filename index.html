@@ -48,10 +48,10 @@
     <kbd data-keyCode="48">0</kbd>
     <kbd data-keyCode="189">-</kbd>
     <kbd data-keyCode="187">+</kbd>
-    <kbd data-keyCode="8" style="flex-grow: 1;">Backspace</kbd>
+    <kbd data-keyCode="8" style="flex-grow: 1;"><i class="material-icons">keyboard_backspace</i> Backspace</kbd>
    </div>
    <div class="row">
-    <kbd data-keyCode="9" style="flex-grow: 1;">Tab</kbd>
+    <kbd data-keyCode="9" style="flex-grow: 1;">Tab <i class="material-icons">keyboard_tab</i></kbd>
     <kbd data-keyCode="81">Q</kbd>
     <kbd data-keyCode="87">W</kbd>
     <kbd data-keyCode="69">E</kbd>
@@ -67,7 +67,7 @@
     <kbd data-keyCode="220" style="flex-grow: 1;">\</kbd>
    </div>
    <div class="row">
-    <kbd data-keyCode="20" style="flex-grow: 1;">Caps Lock</kbd>
+    <kbd data-keyCode="20" style="flex-grow: 1;">Caps Lock <i class="material-icons">keyboard_capslock</i></kbd>
     <kbd data-keyCode="65">A</kbd>
     <kbd data-keyCode="83">S</kbd>
     <kbd data-keyCode="68">D</kbd>
@@ -79,10 +79,10 @@
     <kbd data-keyCode="76">L</kbd>
     <kbd data-keyCode="186">;</kbd>
     <kbd data-keyCode="222">'</kbd>
-    <kbd data-keyCode="13" style="flex-grow: 1;">Enter</kbd>
+    <kbd data-keyCode="13" style="flex-grow: 1;"><i class="material-icons">keyboard_return</i> Enter</kbd>
    </div>
    <div class="row">
-    <kbd data-keyCode="16" data-keySide="left" style="flex-grow: 1;">Shift</kbd>
+    <kbd data-keyCode="16" data-keySide="left" style="flex-grow: 1;"><i class="material-icons">arrow_upward</i> Shift</kbd>
     <kbd data-keyCode="90">Z</kbd>
     <kbd data-keyCode="88">X</kbd>
     <kbd data-keyCode="67">C</kbd>
@@ -93,7 +93,7 @@
     <kbd data-keyCode="188">,</kbd>
     <kbd data-keyCode="190">.</kbd>
     <kbd data-keyCode="191">/</kbd>
-    <kbd data-keyCode="16" data-keySide="right" style="flex-grow: 1;">Shift</kbd>
+    <kbd data-keyCode="16" data-keySide="right" style="flex-grow: 1;">Shift <i class="material-icons">arrow_upward</i></kbd>
    </div>
    <div class="row">
     <kbd data-keyCode="17" data-keySide="left" style="flex-grow: 3;">Ctrl</kbd>
@@ -106,86 +106,105 @@
     <kbd data-keyCode="17" data-keySide="right" style="flex-grow: 3;">Ctrl</kbd>
    </div>
   </div>
-  <div id="config">
-   <fieldset id="keyStyle">
-    <legend>Key Style</legend>
-    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-1">
-     <input type="radio" id="keyStyle-1" class="mdl-radio__button" name="keyStyle" value="black" checked/>
-     <span class="mdl-radio__label">Black</span>
-    </label>
-    <br/>
-    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-2">
-     <input type="radio" id="keyStyle-2" class="mdl-radio__button" name="keyStyle" value="grey">
-     <span class="mdl-radio__label">Grey</span>
-    </label>
-    <br/>
-    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-3">
-     <input type="radio" id="keyStyle-3" class="mdl-radio__button" name="keyStyle" value="white">
-     <span class="mdl-radio__label">White (Outline)</span>
-    </label>
-   </fieldset>
-   <fieldset id="keyRoundness">
-    <legend>Key Roundness</legend>
-    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyRoundness-1">
-     <input type="radio" id="keyRoundness-1" class="mdl-radio__button" name="keyRoundness" value="round" checked/>
-     <span class="mdl-radio__label">Round</span>
-    </label>
-    <br/>
-    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyRoundness-2">
-     <input type="radio" id="keyRoundness-2" class="mdl-radio__button" name="keyRoundness" value="square"/>
-     <span class="mdl-radio__label">Square</span>
-    </label>
-   </fieldset>
-   <fieldset id="textAlign">
-    <legend>Text Align</legend>
-    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="textAlign-1">
-     <input type="radio" id="textAlign-1" class="mdl-radio__button" name="textAlign" value="center" checked/>
-     <span class="mdl-radio__label">Center</span>
-    </label>
-    <br/>
-    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="textAlign-2">
-     <input type="radio" id="textAlign-2" class="mdl-radio__button" name="textAlign" value="topLeft"/>
-     <span class="mdl-radio__label">TopLeft</span>
-    </label>
-   </fieldset>
-   <fieldset id="colours">
-    <legend>Colours</legend>
-    <label><input id="colourPicker" type="color"/></label>
-    <label>#
-     <div style="width: 100px;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <!--<input class="mdl-textfield__input" type="text" pattern="([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" value="000000" maxlength="6" id="colourInput"/>-->
-      <input class="mdl-textfield__input" type="text" pattern="([A-Fa-f0-9]{6})$" value="000000" maxlength="6" id="colourInput"/>
-      <label class="mdl-textfield__label" for="colourInput">Hexcode</label>
-      <span class="mdl-textfield__error">Invalid Hexcode!</span>
-     </div>
-    </label>
-    <br/>
-    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="colourToggle">
-     <input type="checkbox" id="colourToggle" class="mdl-switch__input">
-     <span class="mdl-switch__label">Paint Colour</span>
-    </label>
-    <br/>
-    <button id="colourReset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-     Reset Colours
-    </button>
-   </fieldset>
-   <fieldset id="options">
-    <legend>Save</legend>
-    <button id="savePNG" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-     Save as PNG
-    </button>
-    <br/>
-    <button id="saveJPG" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-     Save as JPG
-    </button>
-    <br/>
-    <label>
-     JPG Quality - <span id="JPG_qual_num">80</span>%
-     <p style="width:200px">
-      <input class="mdl-slider mdl-js-slider" type="range" id="JPG_qual" min="1" max="100" value="80" step="1"/>
-     </p>
-    </label>
-   </fieldset>
+  <div id="config" data-state="closed">
+   <button id="config_toggle" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+    <i class="material-icons">arrow_back</i>
+   </button>
+   <div>
+    <fieldset id="keyIcons">
+     <legend>Key Icons</legend>
+     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="keyIconsToggle">
+      <input type="checkbox" id="keyIconsToggle" class="mdl-switch__input">
+      <span class="mdl-switch__label">Hide Icons</span>
+     </label>
+    </fieldset>
+    <fieldset id="keyStyle">
+     <legend>Key Style</legend>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-1">
+      <input type="radio" id="keyStyle-1" class="mdl-radio__button" name="keyStyle" value="black" checked/>
+      <span class="mdl-radio__label">Black</span>
+     </label>
+     <br/>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-2">
+      <input type="radio" id="keyStyle-2" class="mdl-radio__button" name="keyStyle" value="grey">
+      <span class="mdl-radio__label">Grey</span>
+     </label>
+     <br/>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-3">
+      <input type="radio" id="keyStyle-3" class="mdl-radio__button" name="keyStyle" value="white">
+      <span class="mdl-radio__label">White (Outline)</span>
+     </label>
+    </fieldset>
+   </div>
+   <div>
+    <fieldset id="keyRoundness">
+     <legend>Key Roundness</legend>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyRoundness-1">
+      <input type="radio" id="keyRoundness-1" class="mdl-radio__button" name="keyRoundness" value="round" checked/>
+      <span class="mdl-radio__label">Round</span>
+     </label>
+     <br/>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyRoundness-2">
+      <input type="radio" id="keyRoundness-2" class="mdl-radio__button" name="keyRoundness" value="square"/>
+      <span class="mdl-radio__label">Square</span>
+     </label>
+    </fieldset>
+    <fieldset id="textAlign">
+     <legend>Text Align</legend>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="textAlign-1">
+      <input type="radio" id="textAlign-1" class="mdl-radio__button" name="textAlign" value="center" checked/>
+      <span class="mdl-radio__label">Center</span>
+     </label>
+     <br/>
+     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="textAlign-2">
+      <input type="radio" id="textAlign-2" class="mdl-radio__button" name="textAlign" value="topLeft"/>
+      <span class="mdl-radio__label">TopLeft</span>
+     </label>
+    </fieldset>
+   </div>
+   <div>
+    <fieldset id="colours">
+     <legend>Colours</legend>
+     <label><input id="colourPicker" type="color"/></label>
+     <label>#
+      <div style="width: 100px;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+       <!--<input class="mdl-textfield__input" type="text" pattern="([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" value="000000" maxlength="6" id="colourInput"/>-->
+       <input class="mdl-textfield__input" type="text" pattern="([A-Fa-f0-9]{6})$" value="000000" maxlength="6" id="colourInput"/>
+       <label class="mdl-textfield__label" for="colourInput">Hexcode</label>
+       <span class="mdl-textfield__error">Invalid Hexcode!</span>
+      </div>
+     </label>
+     <br/>
+     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="colourToggle_Mouse">
+      <input type="checkbox" id="colourToggle_Mouse" class="mdl-switch__input">
+      <span class="mdl-switch__label">Paint with Mouse</span>
+     </label>
+     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="colourToggle_Keyboard">
+      <input type="checkbox" id="colourToggle_Keyboard" class="mdl-switch__input">
+      <span class="mdl-switch__label">Paint with Keyboard<br/><small>(Disables keyboard shortcuts)</small></span>
+     </label>
+     <button id="colourReset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Reset Colours
+     </button>
+    </fieldset>
+    <fieldset id="save">
+     <legend>Save</legend>
+     <button id="savePNG" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Save as PNG
+     </button>
+     <br/>
+     <button id="saveJPG" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Save as JPG
+     </button>
+     <br/>
+     <label>
+      JPG Quality - <span id="JPG_qual_num">80</span>%
+      <p style="width:200px">
+       <input class="mdl-slider mdl-js-slider" type="range" id="JPG_qual" min="1" max="100" value="80" step="1"/>
+      </p>
+     </label>
+    </fieldset>
+   </div>
   </div>
  </body>
 </html>
