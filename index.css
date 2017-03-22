@@ -1,0 +1,126 @@
+html, body{
+ height: 100%;
+}
+body{
+ padding: 0;
+ margin: 0;
+ position: relative;
+ overflow: hidden;
+ -webkit-user-select: none;
+ user-select: none;
+}
+#container{
+ position: relative;
+ width: calc(48px * 15 + 256px);
+ padding: 16px;
+ border: 2px solid #000;
+ background: #fff;
+}
+kbd{
+ padding: 4px;
+ margin: 2px;
+ display: inline-block;
+ width: 48px;
+ height: 48px;
+ font-family: Roboto, sans-serif;
+ font-size: 14pt;
+ cursor: default;
+}
+kbd > span{
+ pointer-events: none;
+}
+
+.row{
+ display: flex;
+}
+#config{
+ position: fixed;
+ padding: 4px 32px 4px 64px;
+ height: 100%;
+ top: 0;
+ right: 0;
+ background: #fff;
+ transform: translateX(calc(100% - 64px));
+ transition: transform 1s;
+ border-left: 2px dashed #000;
+ overflow-y: auto;
+ z-index: 1;
+}
+#config:hover{
+ transform: translateX(0%);
+}
+fieldset{
+ margin-top: 12px;
+ margin-bottom: 8px;
+}
+legend{
+ font-size: 16pt;
+ text-decoration: underline;
+ margin-bottom: 12px;
+}
+#colourInput{
+ font-family: monospace;
+}
+#container[data-keyRoundness="round"] kbd{;
+ border-radius: 8px;
+}
+#container[data-keyRoundness="square"] kbd{;
+ border-radius: initial;
+}
+
+#container[data-keyStyle="black"] kbd{
+ color: #fff;
+ background: #000;
+ border: 2px transparent solid;
+ text-shadow:
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
+}
+#container[data-keyStyle="black"] kbd > span{
+ border-bottom: 2px #fff solid;
+}
+
+#container[data-keyStyle="grey"] kbd{
+ color: #fff;
+ background: #555;
+ border: 2px transparent solid;
+ text-shadow:
+  -1px -1px 0 #555,
+  1px -1px 0 #555,
+  -1px 1px 0 #555,
+  1px 1px 0 #555;
+}
+#container[data-keyStyle="grey"] kbd > span{
+ border-bottom: 2px #fff solid;
+}
+
+#container[data-keyStyle="white"] kbd{
+ color: #000;
+ background: #fff;
+ border: 2px #000 solid;
+ text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
+}
+#container[data-keyStyle="white"] kbd > span{
+ border-bottom: 2px #000 solid;
+}
+
+#container[data-textAlign="center"] kbd{
+ text-align: center;
+ line-height: 48px;
+}
+#container[data-textAlign="topLeft"] kbd{
+ text-align: left;
+ line-height: initial;
+}
+/*#container kbd[data-isPressed="true"]{
+width: 40px;
+height: 40px;
+line-height: 40px;
+margin: 6px;
+}*/
