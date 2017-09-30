@@ -1,210 +1,179 @@
 <!DOCTYPE html>
 <html>
- <head>
-  <title>Keyboard</title>
-  <script src="jquery-3.1.1.min.js"></script>
-  <script src="dom-to-image.js"></script>
-  <script src="FileSaver.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link href="material.min.css" rel="stylesheet">
-  <script src="material.min.js"></script>
-  <link href="index.css" rel="stylesheet">
-  <script src="index.js"></script>
- </head>
- <body>
-  <div id="container" data-keyStyle="black" data-keyRoundness="round" data-textAlign="center">
-   <div class="row" style="justify-content: space-between;">
-    <kbd data-keyCode="27">Esc</kbd>
-    <div>
-     <kbd data-keyCode="112">F1</kbd>
-     <kbd data-keyCode="113">F2</kbd>
-     <kbd data-keyCode="114">F3</kbd>
-     <kbd data-keyCode="115">F4</kbd>
-    </div>
-    <div>
-     <kbd data-keyCode="116">F5</kbd>
-     <kbd data-keyCode="117">F6</kbd>
-     <kbd data-keyCode="118">F7</kbd>
-     <kbd data-keyCode="119">F8</kbd>
-    </div>
-    <div>
-     <kbd data-keyCode="120">F9</kbd>
-     <kbd data-keyCode="121">F10</kbd>
-     <kbd data-keyCode="122">F11</kbd>
-     <kbd data-keyCode="123">F12</kbd>
-    </div>
-   </div>
-   <div class="row">
-    <kbd data-keyCode="192">`</kbd>
-    <kbd data-keyCode="49">1</kbd>
-    <kbd data-keyCode="50">2</kbd>
-    <kbd data-keyCode="51">3</kbd>
-    <kbd data-keyCode="52">4</kbd>
-    <kbd data-keyCode="53">5</kbd>
-    <kbd data-keyCode="54">6</kbd>
-    <kbd data-keyCode="55">7</kbd>
-    <kbd data-keyCode="56">8</kbd>
-    <kbd data-keyCode="57">9</kbd>
-    <kbd data-keyCode="48">0</kbd>
-    <kbd data-keyCode="189">-</kbd>
-    <kbd data-keyCode="187">+</kbd>
-    <kbd data-keyCode="8" style="flex-grow: 1;"><i class="material-icons">keyboard_backspace</i> Backspace</kbd>
-   </div>
-   <div class="row">
-    <kbd data-keyCode="9" style="flex-grow: 1;">Tab <i class="material-icons">keyboard_tab</i></kbd>
-    <kbd data-keyCode="81">Q</kbd>
-    <kbd data-keyCode="87">W</kbd>
-    <kbd data-keyCode="69">E</kbd>
-    <kbd data-keyCode="82">R</kbd>
-    <kbd data-keyCode="84">T</kbd>
-    <kbd data-keyCode="89">Y</kbd>
-    <kbd data-keyCode="85">U</kbd>
-    <kbd data-keyCode="73">I</kbd>
-    <kbd data-keyCode="79">O</kbd>
-    <kbd data-keyCode="80">P</kbd>
-    <kbd data-keyCode="219">[</kbd>
-    <kbd data-keyCode="221">]</kbd>
-    <kbd data-keyCode="220" style="flex-grow: 1;">\</kbd>
-   </div>
-   <div class="row">
-    <kbd data-keyCode="20" style="flex-grow: 1;">Caps Lock <i class="material-icons">keyboard_capslock</i></kbd>
-    <kbd data-keyCode="65">A</kbd>
-    <kbd data-keyCode="83">S</kbd>
-    <kbd data-keyCode="68">D</kbd>
-    <kbd data-keyCode="70"><span style="padding-bottom: 1px;">F</span></kbd>
-    <kbd data-keyCode="71">G</kbd>
-    <kbd data-keyCode="72">H</kbd>
-    <kbd data-keyCode="74"><span style="padding-bottom: 1px;">J</span></kbd>
-    <kbd data-keyCode="75">K</kbd>
-    <kbd data-keyCode="76">L</kbd>
-    <kbd data-keyCode="186">;</kbd>
-    <kbd data-keyCode="222">'</kbd>
-    <kbd data-keyCode="13" style="flex-grow: 1;"><i class="material-icons">keyboard_return</i> Enter</kbd>
-   </div>
-   <div class="row">
-    <kbd data-keyCode="16" data-keySide="left" style="flex-grow: 1;"><i class="material-icons">arrow_upward</i> Shift</kbd>
-    <kbd data-keyCode="90">Z</kbd>
-    <kbd data-keyCode="88">X</kbd>
-    <kbd data-keyCode="67">C</kbd>
-    <kbd data-keyCode="86">V</kbd>
-    <kbd data-keyCode="66">B</kbd>
-    <kbd data-keyCode="78">N</kbd>
-    <kbd data-keyCode="77">M</kbd>
-    <kbd data-keyCode="188">,</kbd>
-    <kbd data-keyCode="190">.</kbd>
-    <kbd data-keyCode="191">/</kbd>
-    <kbd data-keyCode="16" data-keySide="right" style="flex-grow: 1;">Shift <i class="material-icons">arrow_upward</i></kbd>
-   </div>
-   <div class="row">
-    <kbd data-keyCode="17" data-keySide="left" style="flex-grow: 3;">Ctrl</kbd>
-    <kbd data-keyCode="91" data-keySide="left" style="flex-grow: 1;">Win</kbd>
-    <kbd data-keyCode="18" data-keySide="left" style="flex-grow: 2;">Alt</kbd>
-    <kbd data-keyCode="32" style="flex-grow: 20;">Space</kbd>
-    <kbd data-keyCode="18" data-keySide="right" style="flex-grow: 2;">Alt</kbd>
-    <kbd data-keyCode="91" data-keySide="right" style="flex-grow: 1;">Win</kbd>
-    <kbd data-keyCode="93" style="flex-grow: 1;">Menu</kbd>
-    <kbd data-keyCode="17" data-keySide="right" style="flex-grow: 3;">Ctrl</kbd>
-   </div>
-  </div>
-  <div id="config" data-state="closed">
-   <button id="config_toggle" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-    <i class="material-icons">arrow_back</i>
-   </button>
-   <div>
-    <fieldset id="keyIcons">
-     <legend>Key Icons</legend>
-     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="keyIconsToggle">
-      <input type="checkbox" id="keyIconsToggle" class="mdl-switch__input">
-      <span class="mdl-switch__label">Hide Icons</span>
-     </label>
-    </fieldset>
-    <fieldset id="keyStyle">
-     <legend>Key Style</legend>
-     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-1">
-      <input type="radio" id="keyStyle-1" class="mdl-radio__button" name="keyStyle" value="black" checked/>
-      <span class="mdl-radio__label">Black</span>
-     </label>
-     <br/>
-     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-2">
-      <input type="radio" id="keyStyle-2" class="mdl-radio__button" name="keyStyle" value="grey">
-      <span class="mdl-radio__label">Grey</span>
-     </label>
-     <br/>
-     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyStyle-3">
-      <input type="radio" id="keyStyle-3" class="mdl-radio__button" name="keyStyle" value="white">
-      <span class="mdl-radio__label">White (Outline)</span>
-     </label>
-    </fieldset>
-   </div>
-   <div>
-    <fieldset id="keyRoundness">
-     <legend>Key Roundness</legend>
-     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyRoundness-1">
-      <input type="radio" id="keyRoundness-1" class="mdl-radio__button" name="keyRoundness" value="round" checked/>
-      <span class="mdl-radio__label">Round</span>
-     </label>
-     <br/>
-     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="keyRoundness-2">
-      <input type="radio" id="keyRoundness-2" class="mdl-radio__button" name="keyRoundness" value="square"/>
-      <span class="mdl-radio__label">Square</span>
-     </label>
-    </fieldset>
-    <fieldset id="textAlign">
-     <legend>Text Align</legend>
-     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="textAlign-1">
-      <input type="radio" id="textAlign-1" class="mdl-radio__button" name="textAlign" value="center" checked/>
-      <span class="mdl-radio__label">Center</span>
-     </label>
-     <br/>
-     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="textAlign-2">
-      <input type="radio" id="textAlign-2" class="mdl-radio__button" name="textAlign" value="topLeft"/>
-      <span class="mdl-radio__label">TopLeft</span>
-     </label>
-    </fieldset>
-   </div>
-   <div>
-    <fieldset id="colours">
-     <legend>Colours</legend>
-     <label><input id="colourPicker" type="color"/></label>
-     <label>#
-      <div style="width: 100px;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-       <!--<input class="mdl-textfield__input" type="text" pattern="([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" value="000000" maxlength="6" id="colourInput"/>-->
-       <input class="mdl-textfield__input" type="text" pattern="([A-Fa-f0-9]{6})$" value="000000" maxlength="6" id="colourInput"/>
-       <label class="mdl-textfield__label" for="colourInput">Hexcode</label>
-       <span class="mdl-textfield__error">Invalid Hexcode!</span>
+  <head>
+    <title>Keyboard</title>
+    <link href="favicon.png" rel="icon"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <script src="js/dom-to-image.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/sizzle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="keyboard" data-alignment="centre">
+        <div class="row" style="justify-content: space-between;">
+          <kbd data-key="Escape">Esc</kbd>
+          <div>
+            <kbd data-key="F1">F1</kbd>
+            <kbd>F2</kbd>
+            <kbd>F3</kbd>
+            <kbd>F4</kbd>
+          </div>
+          <div>
+            <kbd>F5</kbd>
+            <kbd>F6</kbd>
+            <kbd>F7</kbd>
+            <kbd>F8</kbd>
+          </div>
+          <div>
+            <kbd>F9</kbd>
+            <kbd>F10</kbd>
+            <kbd>F11</kbd>
+            <kbd>F12</kbd>
+          </div>
+        </div>
+        <div class="row">
+          <kbd class="set"><span>~</span><span>`</span></kbd>
+          <kbd class="set"><span>!</span><span>1</span></kbd>
+          <kbd class="set"><span>@</span><span>2</span></kbd>
+          <kbd class="set"><span>#</span><span>3</span></kbd>
+          <kbd class="set"><span>$</span><span>4</span></kbd>
+          <kbd class="set"><span>%</span><span>5</span></kbd>
+          <kbd class="set"><span>^</span><span>6</span></kbd>
+          <kbd class="set"><span>&amp;</span><span>7</span></kbd>
+          <kbd class="set"><span>*</span><span>8</span></kbd>
+          <kbd class="set"><span>(</span><span>9</span></kbd>
+          <kbd class="set"><span>)</span><span>0</span></kbd>
+          <kbd class="set"><span>_</span><span>-</span></kbd>
+          <kbd class="set"><span>+</span><span>=</span></kbd>
+          <kbd style="flex-grow: 1;"><x-icon data-ico="keyboard-backspace"></x-icon> Backspace</kbd>
+        </div>
+        <div class="row">
+          <kbd style="flex-grow: 1;">Tab <x-icon data-ico="keyboard-tab"></x-icon></kbd>
+          <kbd>Q</kbd>
+          <kbd>W</kbd>
+          <kbd>E</kbd>
+          <kbd>R</kbd>
+          <kbd>T</kbd>
+          <kbd>Y</kbd>
+          <kbd>U</kbd>
+          <kbd>I</kbd>
+          <kbd>O</kbd>
+          <kbd>P</kbd>
+          <kbd class="set"><span>{</span><span>[</span></kbd>
+          <kbd class="set"><span>}</span><span>]</span></kbd>
+          <kbd style="flex-grow: 1;" class="set"><span>|</span><span>\</span></kbd>
+        </div>
+        <div class="row">
+          <kbd style="flex-grow: 1;">Caps Lock <x-icon data-ico="keyboard-caps"></x-icon></kbd>
+          <kbd>A</kbd>
+          <kbd>S
+            <span class="note">2</span></kbd>
+          <kbd>D
+            <span class="note">4</span></kbd>
+          <kbd class="notch">F
+            <span class="note">6</span></kbd>
+          <kbd>G
+            <span class="note">8</span></kbd>
+          <kbd>H</kbd>
+          <kbd class="notch">J</kbd>
+          <kbd>K</kbd>
+          <kbd>L</kbd>
+          <kbd class="set"><span>:</span><span>;</span></kbd>
+          <kbd class="set"><span>"</span><span>'</span></kbd>
+          <kbd style="flex-grow: 1;"><x-icon data-ico="keyboard-return"></x-icon> Enter</kbd>
+        </div>
+        <div class="row">
+          <kbd data-keySide="left" style="flex-grow: 1;"><x-icon data-ico="arrow-up"></x-icon> Shift</kbd>
+          <kbd>Z
+            <span class="note">1</span></kbd>
+          <kbd>X
+            <span class="note">3</span></kbd>
+          <kbd>C
+            <span class="note">5</span></kbd>
+          <kbd>V
+            <span class="note">7</span></kbd>
+          <kbd>B
+            <span class="note">9</span></kbd>
+          <kbd>N</kbd>
+          <kbd>M</kbd>
+          <kbd class="set"><span>&lt;</span><span>,</span></kbd>
+          <kbd class="set"><span>&gt;</span><span>.</span></kbd>
+          <kbd class="set"><span>?</span><span>/</span></kbd>
+          <kbd data-keySide="right" style="flex-grow: 1;">Shift <x-icon data-ico="arrow-up"></x-icon></kbd>
+        </div>
+        <div class="row">
+          <kbd data-keySide="left" style="flex-grow: 3;">Ctrl</kbd>
+          <kbd data-keySide="left" style="flex-grow: 1;"><x-icon data-ico="windows"></x-icon></kbd>
+          <kbd data-keySide="left" style="flex-grow: 2;">Alt</kbd>
+          <kbd style="flex-grow: 20;">Space</kbd>
+          <kbd data-keySide="right" style="flex-grow: 2;">Alt</kbd>
+          <kbd data-keySide="right" style="flex-grow: 1;"><x-icon data-ico="windows"></x-icon></kbd>
+          <kbd style="flex-grow: 1;"><x-icon data-ico="menu"></x-icon></kbd>
+          <kbd data-keySide="right" style="flex-grow: 3;">Ctrl</kbd>
+        </div>
       </div>
-     </label>
-     <br/>
-     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="colourToggle_Mouse">
-      <input type="checkbox" id="colourToggle_Mouse" class="mdl-switch__input">
-      <span class="mdl-switch__label">Paint with Mouse</span>
-     </label>
-     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="colourToggle_Keyboard">
-      <input type="checkbox" id="colourToggle_Keyboard" class="mdl-switch__input">
-      <span class="mdl-switch__label">Paint with Keyboard<br/><small>(Disables keyboard shortcuts)</small></span>
-     </label>
-     <button id="colourReset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      Reset Colours
-     </button>
-    </fieldset>
-    <fieldset id="save">
-     <legend>Save</legend>
-     <button id="savePNG" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      Save as PNG
-     </button>
-     <br/>
-     <button id="saveJPG" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      Save as JPG
-     </button>
-     <br/>
-     <label>
-      JPG Quality - <span id="JPG_qual_num">80</span>%
-      <p style="width:200px">
-       <input class="mdl-slider mdl-js-slider" type="range" id="JPG_qual" min="1" max="100" value="80" step="1"/>
-      </p>
-     </label>
-    </fieldset>
-   </div>
-  </div>
- </body>
+    </div>
+    <div id="controls">
+      <div>
+        <div class="heading">Colouring</div>
+        <div id="colour-selection">
+          <div>
+            <label>
+              <input type="radio" name="colour" value="#000" checked/>
+              Black
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="colour" value="#00ca00"/>
+              Green
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="colour" value="#127cff"/>
+              Blue
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="colour" value="#f21839"/>
+              Red
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="colour" value="#ffc000"/>
+              Amber
+            </label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="heading">Alignment</div>
+        <div id="alignment-selection">
+          <div>
+            <label>
+              <input type="radio" name="alignment" value="centre" checked/>
+              Centre
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="alignment" value="topleft"/>
+              Top-Left
+            </label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="heading">Save</div>
+        <div id="savePNG" class="button">Save as PNG</div>
+        <div id="saveJPG" class="button">Save as JPG (80)</div>
+      </div>
+    </div>
+    <script src="js/index.js"></script>
+  </body>
 </html>
