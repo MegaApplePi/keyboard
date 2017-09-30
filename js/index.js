@@ -34,19 +34,21 @@
   const $savePNG = $('#savePNG')[0];
   const $saveJPG = $('#saveJPG')[0];
 
-  let background = "#000";
+  let colour = "white";
 
   $keyboard.addEventListener('click', function(e){
     let {target} = e;
     if( target.tagName === "KBD" ){
-      target.style.background = background;
+      if( colour !== "white" ){
+        target.setAttribute('data-colour', colour);
+      }
     }
   });
 
   $colourSelection.addEventListener('click', function(e){
     let {target} = e;
     if( target.tagName === "INPUT" ){
-      background = target.value;
+      colour = target.value;
     }
   });
 
