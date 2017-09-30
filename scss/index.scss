@@ -1,0 +1,177 @@
+@import 'font';
+@import 'materialdesignicons';
+
+body{
+  background: #000;
+  font-family: "Exo 2", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  user-select: none;
+  .container{
+    left: 50vw;
+    position: absolute;
+    transform: translate(calc(-50% - 155px), -50%);
+    top: 50vh;
+    #keyboard{
+      position: relative;
+      width: calc(48px * 15 + 200px);
+      &[data-alignment="centre"]{
+        .row{
+          kbd{
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+      &[data-alignment="topleft"]{
+        .row{
+          kbd{
+            align-items: flex-start;
+            justify-content: flex-start;
+          }
+        }
+      }
+      .row{
+        display: flex;
+        kbd{
+          background: #fff;
+          border-radius: 8px;
+          color: #000;
+          cursor: default;
+          display: inline-flex;
+          font-family: inherit;
+          font-size: 20px;
+          height: 48px;
+          margin: 2px;
+          padding: 4px;
+          position: relative;
+          text-shadow: 1px 1px 1px #fff;
+          width: 48px;
+          &[data-colour="green"]{
+            background: #00ca00;
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            &.notch{
+              &:after{
+                border-bottom-color: #fff;
+                box-shadow: 1px 1px 1px #000;
+              }
+            }
+          }
+          &[data-colour="blue"]{
+            background: #127cff;
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            &.notch{
+              &:after{
+                border-bottom-color: #fff;
+                box-shadow: 1px 1px 1px #000;
+              }
+            }
+          }
+          &[data-colour="red"]{
+            background: #f21839;
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            &.notch{
+              &:after{
+                border-bottom-color: #fff;
+                box-shadow: 1px 1px 1px #000;
+              }
+            }
+          }
+          &[data-colour="amber"]{
+            background: #ffc000;
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            &.notch{
+              &:after{
+                border-bottom-color: #fff;
+                box-shadow: 1px 1px 1px #000;
+              }
+            }
+          }
+          &.set{
+            flex-direction: column;
+            > span{
+              pointer-events: none;
+            }
+          }
+          &.notch{
+            flex-direction: column;
+            &:after{
+              border-bottom: #000 2px solid;
+              content: " ";
+              width: 0.5em;
+            }
+          }
+          > input[type="text"]{
+            bottom: 0.25em;
+            color: inherit;
+            font-family: inherit;
+            font-size: inherit;
+            background: transparent;
+            border: none;
+            outline: none;
+            position: absolute;
+            right: 0.25em;
+            text-align: right;
+            text-shadow: inherit;
+            width: calc(100% - 0.5em);
+            &:disabled{
+              cursor: default;
+              pointer-events: none;
+              user-select: none;
+            }
+          }
+          > x-icon{
+            font-size: 24px;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+  #controls{
+    background: #fff;
+    border-left: 2px solid #000;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: auto;
+    padding: 4px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    .heading{
+      font-size: 1.5em;
+    }
+    > div{
+      margin: 8px 0;
+      &:first-child{
+        margin-top: 0;
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+    .button{
+      background: #009688;
+      color: #fff;
+      cursor: pointer;
+      padding: 4px 8px;
+      display: inline-flex;
+      transition: 100ms background;
+      &:hover{
+        background: #26A69A;
+      }
+      &:active{
+        background: #00897B;
+      }
+    }
+  }
+}

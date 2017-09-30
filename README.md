@@ -14,8 +14,9 @@ A colour codeable HTML/CSS keyboard.
 
 ### Libraries
 
-These libraries were used:
+Respect:
 
-- [dom-to-image](https://github.com/tsayen/dom-to-image) - for converting the DOM to an image
-- [FileSaver](https://github.com/eligrey/FileSaver.js/) - to save that image as an actual file
-- [Material Design Lite](https://getmdl.io/index.html) - design and styles
+- [dom-to-image](https://github.com/tsayen/dom-to-image)
+- [FileSaver](https://github.com/eligrey/FileSaver.js/)
+- [Material Design](https://github.com/Templarian/MaterialDesign) - icons
+- [Sizzle](https://github.com/jquery/sizzle)
