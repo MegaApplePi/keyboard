@@ -1,25 +1,35 @@
 @import 'font';
-@import 'materialdesignicons';
 
 body{
   background: #000;
   font-family: "Exo 2", sans-serif;
   font-size: 16px;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
   padding: 0;
   position: relative;
   user-select: none;
   .container{
-    left: 50vw;
+    left: 50%;
     position: absolute;
     transform: translate(calc(-50% - 155px), -50%);
-    top: 50vh;
+    top: 50%;
     #keyboard{
       position: relative;
       width: calc(48px * 15 + 200px);
+      &[no-shift]{
+        .shift{
+          display: none;
+        }
+      }
+      &[no-altgr]{
+        .altgr{
+          display: none;
+        }
+      }
       &[data-alignment="centre"]{
-        .row{
+        > div{
           kbd{
             align-items: center;
             justify-content: center;
@@ -27,81 +37,68 @@ body{
         }
       }
       &[data-alignment="topleft"]{
-        .row{
+        > div{
           kbd{
             align-items: flex-start;
             justify-content: flex-start;
           }
         }
       }
-      .row{
+      > div{
         display: flex;
+        &.top{
+          justify-content: space-between;
+        }
         kbd{
           background: #fff;
-          border-radius: 8px;
+          border-radius: 2px;
           color: #000;
           cursor: default;
           display: inline-flex;
+          flex-direction: column;
           font-family: inherit;
-          font-size: 20px;
+          font-size: 18px;
           height: 48px;
           margin: 2px;
           padding: 4px;
           position: relative;
-          text-shadow: 1px 1px 1px #fff;
           width: 48px;
-          &[data-colour="green"]{
-            background: #00ca00;
+          &.merged{
+            &:before{
+              content: "";
+              background: #fff;
+              position: absolute;
+              left: 0;
+              top: -50%;
+              width: 100%;
+              height: 100%;
+              z-index: -1;
+            }
+          }
+          &[data-colour]:not([data-colour="white"]){
             color: #fff;
-            text-shadow: 1px 1px 1px #000;
+            img{
+              filter: invert(1);
+            }
             &.notch{
               &:after{
                 border-bottom-color: #fff;
-                box-shadow: 1px 1px 1px #000;
               }
             }
+          }
+          &[data-colour="green"]{
+            background: #00ca00;
           }
           &[data-colour="blue"]{
             background: #127cff;
-            color: #fff;
-            text-shadow: 1px 1px 1px #000;
-            &.notch{
-              &:after{
-                border-bottom-color: #fff;
-                box-shadow: 1px 1px 1px #000;
-              }
-            }
           }
           &[data-colour="red"]{
             background: #f21839;
-            color: #fff;
-            text-shadow: 1px 1px 1px #000;
-            &.notch{
-              &:after{
-                border-bottom-color: #fff;
-                box-shadow: 1px 1px 1px #000;
-              }
-            }
           }
           &[data-colour="amber"]{
             background: #ffc000;
-            color: #fff;
-            text-shadow: 1px 1px 1px #000;
-            &.notch{
-              &:after{
-                border-bottom-color: #fff;
-                box-shadow: 1px 1px 1px #000;
-              }
-            }
-          }
-          &.set{
-            flex-direction: column;
-            > span{
-              pointer-events: none;
-            }
           }
           &.notch{
-            flex-direction: column;
             &:after{
               border-bottom: #000 2px solid;
               content: " ";
@@ -112,7 +109,7 @@ body{
             bottom: 0.25em;
             color: inherit;
             font-family: inherit;
-            font-size: inherit;
+            font-size: 0.9em;
             background: transparent;
             border: none;
             outline: none;
@@ -127,7 +124,11 @@ body{
               user-select: none;
             }
           }
-          > x-icon{
+          > span{
+            pointer-events: none;
+            display: inline-flex;
+          }
+          > img{
             font-size: 24px;
             pointer-events: none;
           }
@@ -138,12 +139,13 @@ body{
   #controls{
     background: #fff;
     border-left: 2px solid #000;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     overflow: auto;
     padding: 4px;
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 0;
     width: 300px;

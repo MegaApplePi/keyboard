@@ -1,406 +1,148 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Keyboard</title>
-    <link href="favicon.png" rel="icon"/>
-    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <script src="js/dom-to-image.js"></script>
-    <script src="js/FileSaver.min.js"></script>
-    <script src="js/sizzle.min.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div id="keyboard" data-alignment="centre">
-        <div class="row" style="justify-content: space-between;">
-          <kbd>Esc
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <div>
-            <kbd>
-              F1
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F2
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F3
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F4
-              <input type="text" maxlength="2"/>
-            </kbd>
-          </div>
-          <div>
-            <kbd>
-              F5
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F6
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F7
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F8
-              <input type="text" maxlength="2"/>
-            </kbd>
-          </div>
-          <div>
-            <kbd>
-              F9
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F10
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F11
-              <input type="text" maxlength="2"/>
-            </kbd>
-            <kbd>
-              F12
-              <input type="text" maxlength="2"/>
-            </kbd>
-          </div>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>keyboard</title>
+  <link href="favicon.png" rel="icon" />
+  <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet" />
+  <link href="css/materialdesignicons.css" rel="stylesheet" />
+  <link href="css/index.css" rel="stylesheet" />
+  <script src="js/dom-to-image.js"></script>
+  <script src="js/FileSaver.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div id="keyboard" data-alignment="centre"></div>
+  </div>
+  <div id="controls">
+    <div id="controls-mode">
+      <div class="heading">
+        <span>Mode</span>
+      </div>
+      <div id="controls-mode-selection">
+        <div>
+          <label>
+            <input type="radio" name="mode" value="note" checked/>
+            <span>Note Mode</span>
+          </label>
         </div>
-        <div class="row">
-          <kbd class="set">
-            <span>~</span>
-            <span>`</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>!</span>
-            <span>1</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>@</span>
-            <span>2</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>#</span>
-            <span>3</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>$</span>
-            <span>4</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>%</span>
-            <span>5</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>^</span>
-            <span>6</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>&amp;</span>
-            <span>7</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>*</span>
-            <span>8</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>(</span>
-            <span>9</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>)</span>
-            <span>0</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>_</span>
-            <span>-</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>+</span>
-            <span>=</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd style="flex-grow: 1;">
-            <x-icon data-ico="keyboard-backspace"></x-icon> Backspace
-            <input type="text" maxlength="2"/>
-          </kbd>
-        </div>
-        <div class="row">
-          <kbd style="flex-grow: 1;">
-            Tab <x-icon data-ico="keyboard-tab"></x-icon>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            Q
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            W
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            E
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            R
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            T
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            Y
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            U
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            I
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            O
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>
-            P
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set">
-            <span>{</span>
-            <span>[</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set"><span>}</span><span>]</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd style="flex-grow: 1;" class="set"><span>|</span><span>\</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-        </div>
-        <div class="row">
-          <kbd style="flex-grow: 1;">Caps Lock <x-icon data-ico="keyboard-caps"></x-icon>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>A
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>S
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>D
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="notch">F
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>G
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>H
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="notch">J
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>K
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>L
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set"><span>:</span><span>;</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set"><span>"</span><span>'</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd style="flex-grow: 1;"><x-icon data-ico="keyboard-return"></x-icon> Enter
-            <input type="text" maxlength="2"/>
-          </kbd>
-        </div>
-        <div class="row">
-          <kbd data-keySide="left" style="flex-grow: 1;"><x-icon data-ico="arrow-up"></x-icon> Shift
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>Z
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>X
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>C
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>V
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>B
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>N
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd>M
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set"><span>&lt;</span><span>,</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set"><span>&gt;</span><span>.</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd class="set"><span>?</span><span>/</span>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd data-keySide="right" style="flex-grow: 1;">Shift <x-icon data-ico="arrow-up"></x-icon>
-            <input type="text" maxlength="2"/>
-          </kbd>
-        </div>
-        <div class="row">
-          <kbd data-keySide="left" style="flex-grow: 3;">Ctrl
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd data-keySide="left" style="flex-grow: 1;"><x-icon data-ico="windows"></x-icon>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd data-keySide="left" style="flex-grow: 2;">Alt
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd style="flex-grow: 20;">Space
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd data-keySide="right" style="flex-grow: 2;">Alt
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd data-keySide="right" style="flex-grow: 1;"><x-icon data-ico="windows"></x-icon>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd style="flex-grow: 1;"><x-icon data-ico="menu"></x-icon>
-            <input type="text" maxlength="2"/>
-          </kbd>
-          <kbd data-keySide="right" style="flex-grow: 3;">Ctrl
-            <input type="text" maxlength="2"/>
-          </kbd>
+        <div>
+          <label>
+            <input type="radio" name="mode" value="colour" />
+            <span>Colour Mode</span>
+          </label>
         </div>
       </div>
     </div>
-    <div id="controls">
-      <div>
-        <div class="heading">
-          <x-icon data-ico="pencil"></x-icon>
-          <span>Mode</span>
-        </div>
-        <div id="mode-toggle">
-          <div>
-            <label>
-              <input type="radio" name="mode" value="note" checked/>
-              Note Mode
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="mode" value="colour"/>
-              Colour Mode
-            </label>
-          </div>
-        </div>
+    <div id="controls-colouring">
+      <div class="heading">
+        <span>Colouring</span>
       </div>
-      <div>
-        <div class="heading">
-          <x-icon data-ico="brush"></x-icon>
-          <span>Colouring</span>
+      <div id="controls-colouring-selection">
+        <div>
+          <label>
+            <input type="radio" name="colour" value="white" checked disabled/> White
+          </label>
         </div>
-        <div id="colour-selection">
-          <div>
-            <label>
-              <input type="radio" name="colour" value="white" checked disabled/>
-              White
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="colour" value="green" disabled/>
-              Green
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="colour" value="blue" disabled/>
-              Blue
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="colour" value="red" disabled/>
-              Red
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="colour" value="amber" disabled/>
-              Amber
-            </label>
-          </div>
+        <div>
+          <label>
+            <input type="radio" name="colour" value="green" disabled/> Green
+          </label>
         </div>
-      </div>
-      <div>
-        <div class="heading">
-          <x-icon data-ico="arrow-top-left"></x-icon>
-          <span>Alignment</span>
+        <div>
+          <label>
+            <input type="radio" name="colour" value="blue" disabled/> Blue
+          </label>
         </div>
-        <div id="alignment-selection">
-          <div>
-            <label>
-              <input type="radio" name="alignment" value="centre" checked/>
-              Centre
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="alignment" value="topleft"/>
-              Top-Left
-            </label>
-          </div>
+        <div>
+          <label>
+            <input type="radio" name="colour" value="red" disabled/> Red
+          </label>
         </div>
-      </div>
-      <div>
-        <div class="heading">
-          <x-icon data-ico="content-save"></x-icon>
-          <span>Save</span>
+        <div>
+          <label>
+            <input type="radio" name="colour" value="amber" disabled/> Amber
+          </label>
         </div>
-        <div id="savePNG" class="button">Save as PNG</div>
-        <div id="saveJPG" class="button">Save as JPG (80%)</div>
-      </div>
-      <div>
-        <div class="heading">
-          <x-icon data-ico="github-box"></x-icon>
-          <span>Contribute</span>
-        </div>
-        <a href="https://github.com/MegaApplePi/keyboard" target="_blank">MegaApplePi/keyboard</a>
       </div>
     </div>
-    <script src="js/index.js"></script>
-  </body>
+    <div id="controls-alignment">
+      <div class="heading">
+        <span>Alignment</span>
+      </div>
+      <div id="controls-alignment-selection">
+        <div>
+          <label>
+            <input type="radio" name="alignment" value="centre" checked/> Centre
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="alignment" value="topleft" /> Top-Left
+          </label>
+        </div>
+      </div>
+    </div>
+    <div id="controls-layout">
+      <div class="heading">
+        <span>Layout</span>
+      </div>
+      <div id="controls-layout-selection">
+        <div>
+          <label>
+            <input type="radio" name="layout" value="QWERTY" checked/>
+            <span>QWERTY</span>
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="layout" value="AZERTY" />
+            <span>AZERTY</span>
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="layout" value="QWERTZ" />
+            <span>QWERTZ</span>
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="layout" value="Dvorak" />
+            <span>Dvorak</span>
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="layout" value="Colemak" />
+            <span>Colemak</span>
+          </label>
+        </div>
+        <!-- <div>
+          <label>
+            <input type="radio" name="layout" value="JCUKEN" />
+            <span>JCUKEN</span>
+          </label>
+        </div> -->
+      </div>
+    </div>
+    <div id="controls-save">
+      <div class="heading">
+        <span>Save</span>
+      </div>
+      <div id="controls-save-png" class="button">Save as PNG</div>
+      <div id="controls-save-jpg" class="button">Save as JPG (80%)</div>
+    </div>
+    <div>
+      <div class="heading">
+        <span>Contribute</span>
+      </div>
+      <a href="https://github.com/MegaApplePi/keyboard" target="_blank">MegaApplePi/keyboard</a>
+    </div>
+  </div>
+  <script src="js/index.js"></script>
+</body>
+
 </html>
