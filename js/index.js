@@ -1,110 +1,132 @@
-/* jshint browser:true */
-/* globals Sizzle, $, domtoimage */
-(function(){
-  "use strict";
-  const $ = Sizzle;
+/* globals domtoimage */
+(function() {
+  const $keyboard = document.getElementById("keyboard");
+  const $controlsModeSelection = document.getElementById("controls-mode-selection");
+  const $controlsColourSelection = document.getElementById("controls-colouring-selection");
+  const $controlsAlignmentSelection = document.getElementById("controls-alignment-selection");
+  const $controlsLayoutSelection = document.getElementById("controls-layout-selection");
+  const $controlsSavePNG = document.getElementById("controls-save-png");
+  const $controlsSaveJPG = document.getElementById("controls-save-jpg");
 
-  /*// capture key events and prevent their default actions
-  let map ={};
-  document.addEventListener('keydown', function(e){
-    e.preventDefault();
-    let {key} = e;
-    map[key] = true;
-    //console.log(map);
-    return false;
-  });
-  document.addEventListener('keyup', function(e){
-    let {key} = e;
-    if( map[key] ){
-      delete map[key];
-    }
-    return false;
-  });*/
+  let layouts;
 
-  // don't allow the context menu to appear
-  window.addEventListener('contextmenu', function(e){
-    e.preventDefault();
-    return false;
-  });
-
-  // define DOM elements
-  const $keyboard = $('#keyboard')[0];
-  const $modeToggle = $('#mode-toggle')[0];
-  const $colourSelection = $('#colour-selection')[0];
-  const $alignmentSelection = $('#alignment-selection')[0];
-  const $savePNG = $('#savePNG')[0];
-  const $saveJPG = $('#saveJPG')[0];
-
-  let isColourModeEnabled = false;
+  let isColouring = false;
   let colour = "white";
 
-  $modeToggle.addEventListener('click', function(e){
+  function elementDisabled(e) {
+    e.setAttribute("disabled", "");
+  }
+  function elementEnabled(e) {
+    e.removeAttribute("disabled");
+  }
+  function $keyboard_click(e) {
     let {target} = e;
-    let $colourSelection_inputs = $('#colour-selection input');
-    let $kbd_inputs = $('#keyboard kbd input');
-    if( target.tagName === "INPUT" ){
-      if( target.value === "note" ){
-        isColourModeEnabled = false;
-        $('#colour-selection input').forEach(function(e){
-          e.setAttribute('disabled', "");
-        });
-        $kbd_inputs.forEach(function(e){
-          e.removeAttribute('disabled');
-        });
-      }else{
-        isColourModeEnabled = true;
-        $colourSelection_inputs.forEach(function(e){
-          e.removeAttribute('disabled');
-        });
-        $kbd_inputs.forEach(function(e){
-          e.setAttribute('disabled', "");
-        });
+    if (target.tagName === "KBD") {
+      if (isColouring) {
+        target.setAttribute("data-colour", colour);
       }
     }
-  });
-
-  $keyboard.addEventListener('click', function(e){
+  }
+  function $controlsModeSelection_click(e) {
     let {target} = e;
-    if( target.tagName === "KBD" ){
-      if( isColourModeEnabled ){
-        if( colour !== "white" ){
-          target.setAttribute('data-colour', colour);
+    let $colourSelectionInputs = document.querySelectorAll("#controls-colouring-selection input");
+    let $kbdInputs = document.querySelectorAll("#keyboard kbd input");
+    if (target.tagName === "INPUT") {
+      if (target.value === "note") {
+        isColouring = false;
+        $colourSelectionInputs.forEach(elementDisabled);
+        $kbdInputs.forEach(elementEnabled);
+      } else {
+        isColouring = true;
+        $colourSelectionInputs.forEach(elementEnabled);
+        $kbdInputs.forEach(elementDisabled);
+      }
+    }
+  }
+  function $controlsColourSelection_click(e) {
+    let {target} = e;
+    if (target.tagName === "INPUT") {
+      colour = target.value;
+    }
+  }
+  function $controlsAlignmentSelection_click(e) {
+    let {target} = e;
+    if (target.tagName === "INPUT") {
+      $keyboard.setAttribute("data-alignment", target.value);
+    }
+  }
+  function $controlsSavePNG_click() {
+    domtoimage.toPng($keyboard)
+      .then((blob) => {
+        fetch(blob)
+          .then((res) => res.blob())
+          .then((blobImage) => window.saveAs(blobImage, "keyboard.png"));
+      });
+  }
+  function $controlsSaveJPG_click() {
+    domtoimage.toJpeg($keyboard, {"quality": 0.8})
+      .then((blob) => {
+        fetch(blob)
+          .then((res) => res.blob())
+          .then((blobImage) => window.saveAs(blobImage, "keyboard.jpg"));
+      });
+  }
+
+  (function(){
+    function xhr_load(e) {
+      let {target} = e;
+      if (target.responseText) {
+        try {
+          layouts = JSON.parse(target.responseText);
+          changeLayout("QWERTY");
+        } catch (e) {
+          alert("An error occurred!");
+          console.error(e);
         }
       }
     }
-  });
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `key-layouts.json`);
+    xhr.addEventListener("load", xhr_load);
+    xhr.send();
+  })();
 
-  $colourSelection.addEventListener('click', function(e){
-    let {target} = e;
-    if( target.tagName === "INPUT" ){
-      colour = target.value;
+  function changeLayout(layout) {
+    while ($keyboard.firstChild) {
+      $keyboard.removeChild($keyboard.firstChild);
     }
-  });
 
-  $alignmentSelection.addEventListener('click', function(e){
-    let {target} = e;
-    if( target.tagName === "INPUT" ){
-      $keyboard.setAttribute('data-alignment', target.value);
+    $keyboard.insertAdjacentHTML("afterBegin", layouts[layout]);
+    let $$kbd = [...$keyboard.querySelectorAll("kbd")];
+    for (let element of $$kbd) {
+      let input = document.createElement("input");
+      input.setAttribute("type", "text");
+      input.setAttribute("maxlength", 2);
+      element.insertAdjacentElement("beforeEnd", input);
     }
-  });
+  }
 
-  // save as png
-  $savePNG.addEventListener('click', function(){
-    domtoimage.toPng($keyboard)
-      .then(function(blob){
-      fetch(blob)
-        .then(res => res.blob())
-        .then(blob => window.saveAs(blob, "keyboard.png"));
-    });
-  });
+  let prevValue;
+  function $controlsLayoutSelection_click(e) {
+    let {target} = e;
+    if (target.tagName === "INPUT") {
+      let value = target.value;
+      if (!["QWERTY", "AZERTY", "QWERTZ", "Dvorak", "Colemak", "JCUKEN"].includes(value)) {
+        value = "QWERTY";
+      }
+      prevValue = value;
+      if (value !== prevValue) {
+        changeLayout(value);
+      }
+    }
+  }
 
-  // save as jpg
-  $saveJPG.addEventListener('click', function(){
-    domtoimage.toJpeg($keyboard, {"quality": 0.8})
-      .then(function(blob){
-      fetch(blob)
-        .then(res => res.blob())
-        .then(blob => window.saveAs(blob, "keyboard.jpg"));
-    });
-  });
+  $keyboard.addEventListener("click", $keyboard_click);
+  $controlsModeSelection.addEventListener("click", $controlsModeSelection_click);
+  $controlsColourSelection.addEventListener("click", $controlsColourSelection_click);
+  $controlsAlignmentSelection.addEventListener("click", $controlsAlignmentSelection_click);
+  $controlsLayoutSelection.addEventListener("click", $controlsLayoutSelection_click);
+  $controlsSavePNG.addEventListener("click", $controlsSavePNG_click);
+  $controlsSaveJPG.addEventListener("click", $controlsSaveJPG_click);
 })();
