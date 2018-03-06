@@ -115,8 +115,8 @@
       if (!["QWERTY", "AZERTY", "QWERTZ", "Dvorak", "Colemak", "JCUKEN"].includes(value)) {
         value = "QWERTY";
       }
-      prevValue = value;
       if (value !== prevValue) {
+        prevValue = value;
         changeLayout(value);
       }
     }
